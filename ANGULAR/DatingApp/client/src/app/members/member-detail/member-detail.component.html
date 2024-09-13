@@ -1,12 +1,13 @@
+
 @if (member) {
     <div class="row">
         <div class="col-4">
             <div class="card">
-                <img 
-                    src="{{member.photoUrl || './assets/user.png'}}" 
+                <img
+                    src="{{member.photoUrl || './assets/user.png'}}"
+                    
                     alt="{{member.knownAs}}"
-                    class="card-img img-thumbnail"
-                >
+                    class="card-img img-thumbnail">
                 <div class="card-body">
                     <div>
                         <strong>Location:</strong>
@@ -18,11 +19,11 @@
                     </div>
                     <div>
                         <strong>Last Active:</strong>
-                        <p>{{member.lastActive}}</p>
+                        <p>{{member.lastActive | timeago}}</p>
                     </div>
                     <div>
                         <strong>Member since:</strong>
-                        <p>{{member.created}}</p>
+                        <p>{{member.created | date: 'dd MMM yyyy'}}</p>
                     </div>
                 </div>
                 <div class="card-footer">
@@ -48,13 +49,19 @@
                 </tab>
                 <tab heading="Photos" #photoTab="tab">
                     @if (photoTab.active) {
-                        <gallery [items]="images" [itemAutosize]="true" class="gallery"></gallery>
+                        <gallery
+                            [items]="images"
+                            [itemAutosize]="true"
+                            class="gallery"
+                    ></gallery>
                     }
+
                 </tab>
                 <tab heading="Messages">
                     <p>Messages will go here</p>
                 </tab>
             </tabset>
         </div>
+
     </div>
 }
